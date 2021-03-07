@@ -1,2 +1,2 @@
 # thanossnap
-thanos snap my problems away
+to thanos snap my problems away
