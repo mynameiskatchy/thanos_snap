@@ -14,8 +14,17 @@ const thanosSnap = function () {
     this.size = 3
     this.speedX = Math.random()
     this.speedY = Math.random() * -1 // move up and to right
+
+    this.first = true // track first time function is run
+
     // applied to each particle
     this.draw = (ctx, percentComplete) => {
+        if (this.first) {
+            this.startX += (Math.random() - 0.5) * 10
+            this.startY += (Math.random() - 0.5) * 10
+            this.first = false
+        }
+
         // start drawing rectangles on our screen
         ctx.beginPath()
         // create a rectangle and define dimensions 
@@ -29,6 +38,10 @@ const thanosSnap = function () {
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`
         // draw for us
         ctx.fill()
+        // increment acceleration of particles
+        this.speedX *= 1.07
+        this.speedY *= 1.07
+        this.size *= 0.95
         // move pixels more and more to right as time goes on
         this.startX += this.speedX
         this.startY += this.speedY
